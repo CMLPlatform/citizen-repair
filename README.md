@@ -8,14 +8,15 @@ The site is in Dutch and English. Dutch is the default. The `EN`/`NL` button in 
 
 | Path | Content |
 |---|---|
-| `index.html` | Home page: hero, challenge, project, R9Lab, events teaser, results, partners, contact. |
+| `index.html` | Home page: hero, challenge (with EU figures), project, R9Lab, events teaser, results, partners, contact. |
 | `events.html` | Events page: upcoming and previous events. |
 | `style.css` | All styles for both pages. |
 | `script.js` | Language toggle. |
+| `CNAME` | Custom domain for GitHub Pages (`citizen-repair.nl`). |
 | `img/hero_iwar.jpg` | Hero background (IWAR 2026 workshop, Delft). Set in `style.css`. |
 | `img/events/iwar2026/` | IWAR 2026 photos, resized to 1600 px. |
 | `img/partners/` | Partner and funder logos. |
-| `img/app.jpg`, `img/ws1.jpg`, `img/hero_demo.jpg` | Other photos in use. |
+| `img/ws1.jpg`, `img/hero_demo.jpg` | Other photos in use (events page). |
 | `img/r9lab_logo.svg` | R9Lab logo (navbar, footer, favicon). |
 
 ## Edit text
@@ -57,21 +58,49 @@ Each translated element has two attributes: `data-nl` (Dutch) and `data-en` (Eng
 
 ## Deploy on GitHub Pages
 
+The site address is **https://citizen-repair.nl**. The `CNAME` file in this folder tells GitHub Pages to use that domain. Do not delete it. DNS is managed at Yourhosting.
+
 1. Create a GitHub repository (for example `repair-project`). Push the contents of this folder to `main`.
 2. Go to **Settings → Pages → Build and deployment**. Set Source to *Deploy from a branch*, Branch to `main`, and folder to `/ (root)`.
-3. The site appears at `https://<user-or-org>.github.io/repair-project/`.
+3. In the same page, under **Custom domain**, enter `citizen-repair.nl` and click **Save**.
+
+### DNS records at the domain registrar
+
+Log in where you bought `citizen-repair.nl`. Delete any existing `A`, `AAAA` or `CNAME` records for `@` and `www` (for example a parking page). Then add these records:
+
+| Type | Name | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| AAAA | `@` | `2606:50c0:8000::153` |
+| AAAA | `@` | `2606:50c0:8001::153` |
+| AAAA | `@` | `2606:50c0:8002::153` |
+| AAAA | `@` | `2606:50c0:8003::153` |
+| CNAME | `www` | `cmlplatform.github.io` |
+
+The site is hosted by the GitHub account `cmlplatform`. Some registrars write the name `@` as an empty field or as `citizen-repair.nl`.
+
+### After the DNS change
+
+1. Wait until DNS is updated. This takes from a few minutes up to 24 hours. To check it, run `dig citizen-repair.nl +short`. The result must show the four `185.199.x.153` addresses.
+2. In **Settings → Pages**, wait for the green "DNS check successful" message. Then select **Enforce HTTPS**. GitHub creates the certificate itself. This can take up to one hour.
+3. Recommended: verify the domain for your GitHub account or organisation (**Settings → Pages → Add a domain**). This stops other GitHub users from taking over the domain.
+
+`https://www.citizen-repair.nl` then redirects to `https://citizen-repair.nl`.
 
 ## Before publishing
 
 - `.gitignore` keeps these files out of the repository:
   - original photo folders (`img/Photos-*/`, for example the 33 MB IWAR originals);
-  - the unused `img/lab1.jpg` and `img/lab2.jpg`;
+  - the unused `img/lab1.jpg`, `img/lab2.jpg` and `img/app.jpg`;
   - macOS, editor and Office temporary files.
   
   You can keep these files on disk. Put new original photos in an `img/Photos-…` folder, so that git ignores them too.
 - Check that the people visible in `img/hero_iwar.jpg`, `img/events/iwar2026/` and `img/ws1.jpg` agree to be shown.
 - Fill in the open event details in `events.html`:
   - The date and place of the REPAIR activity during the Week van de Circulaire Economie (11–19 March 2027).
-  - The date of the Reparatie Lab workshop (LDE, "The Future of Repair II").
+  - The room and building of the Reparatie Lab workshop (LDE, "The Future of Repair II", 23 March 2027, Leiden University).
   - The Brightcon 2025 month. The site says November 2025, but the photos are dated 16 October 2025.
 - The contact address is `info@r9lab.io`. It appears in `index.html` (contact section) and `events.html` (intro).

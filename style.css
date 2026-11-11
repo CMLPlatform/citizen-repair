@@ -28,11 +28,9 @@ nav a:hover{color:var(--magenta)}
 #lang{font-family:var(--mono);border:1px solid var(--blue);background:none;color:var(--blue);border-radius:6px;padding:.15rem .6rem;cursor:pointer}
 #lang:hover{background:var(--blue);color:#fff}
 
-/* hero: IWAR 2026 disassembly workshop photo (Delft) with grid-paper overlay, like the slide backgrounds */
+/* hero: IWAR 2026 disassembly workshop photo (Delft) */
 .hero{position:relative;padding:6rem 0 5rem;color:#fff;
   background:linear-gradient(100deg,rgba(22,32,46,.92) 0%,rgba(31,76,150,.78) 55%,rgba(158,31,99,.55) 100%),url(img/hero_iwar.jpg) center/cover}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(#ffffff14 1px,transparent 1px),linear-gradient(90deg,#ffffff14 1px,transparent 1px);background-size:28px 28px}
 .hero .wrap{position:relative}
 .kicker{font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;color:var(--yellow);margin:0 0 .9rem}
 h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:0 0 1rem;max-width:18ch}
@@ -42,8 +40,7 @@ h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:0 0 1rem;max-width:18ch}
 /* sections */
 section{padding:4rem 0}
 section.wrap{padding:4rem 1.25rem}
-.band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background-image:linear-gradient(var(--blue-soft) 1px,transparent 1px),linear-gradient(90deg,var(--blue-soft) 1px,transparent 1px);background-size:28px 28px}
+.band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 .two{display:grid;gap:2.5rem;grid-template-columns:1fr 1fr;align-items:start}
 .cards{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:2rem}
 .cards article{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem;counter-increment:c}
@@ -57,6 +54,8 @@ section.wrap{padding:4rem 1.25rem}
 .stats b{display:block;font-family:var(--serif);font-size:1.6rem;color:var(--yellow);line-height:1.1}
 .stats span{font-size:.9rem}
 .source{font-size:.8rem;color:var(--muted)}
+.stats.wide{grid-template-columns:repeat(4,1fr);margin-top:2rem}
+.narrow{max-width:42rem}
 
 .results{list-style:none;padding:0;display:grid;gap:.9rem}
 .results li{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--magenta);border-radius:var(--r-sm);padding:.9rem 1.1rem}
@@ -110,4 +109,4 @@ figcaption{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-top
 footer{padding:2rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;background:var(--card)}
 footer .wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .foot-logo{height:28px}
-@media(max-width:760px){.two{grid-template-columns:1fr}.event{grid-template-columns:1fr;gap:.5rem}.next b{display:block}.hero{padding:4rem 0 3rem}nav{gap:.7rem}}
+@media(max-width:760px){.two{grid-template-columns:1fr}.stats.wide{grid-template-columns:repeat(2,1fr)}.event{grid-template-columns:1fr;gap:.5rem}.next b{display:block}.hero{padding:4rem 0 3rem}nav{gap:.7rem}}

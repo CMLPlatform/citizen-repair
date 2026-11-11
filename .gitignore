@@ -1,0 +1,19 @@
+# macOS and editor files
+.DS_Store
+._*
+.vscode/
+.idea/
+*.swp
+
+# Original, full-size photos. The site uses resized copies in img/events/.
+img/Photos-*/
+*.heic
+*.HEIC
+
+# Unused images
+img/lab1.jpg
+img/lab2.jpg
+
+# OneDrive and Office temporary files
+~$*
+*.tmp
